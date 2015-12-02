@@ -1,0 +1,10 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+			"file_exclude_patterns": [".*", "*.sublime-*", "*.pdf", "*.pyc", "*.o"],
+			"folder_exclude_patterns": [".*"]
+		}
+	]
+}

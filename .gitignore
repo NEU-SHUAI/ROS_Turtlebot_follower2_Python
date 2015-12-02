@@ -1,1 +1,3 @@
 .o
+*.pyc
+*.sublime-workspace

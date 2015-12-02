@@ -1,18 +1,22 @@
-import numpy as np
-import cv2
-import roslib
-roslib.load_manifest('vision_package')
 import sys
-import cv2
+import roslib
 import rospy
+#!/usr/bin/env python
+
+roslib.load_manifest('vision_package')
+import cv2
+import numpy as np
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
     
+
 RADIUS = 20
+
+
 class tracker:
     def __init__(self):
-        rospy.init_node("Tracker", anonymous=True) # initializes ROS node
+        rospy.init_node("tracker", anonymous=True) # initializes ROS node
         self.lower = np.array([0,0,0], np.uint8) # lower range of HSV values to be tracked
         self.upper = np.array([0,0,0], np.uint8) # upper range of HSV values to be tracked
         self.trackedX = None # tracked_X/Y/Z = coordinates of tracked object 
@@ -23,6 +27,7 @@ class tracker:
         # need 2 subscribers - image and depth
         self.image_sub = rospy.Subscriber("/camera/rgb/image_color", Image, self.profile_cb) 
         self.depth_sub = None
+
 
     # one callback function to capture data about the tracked object
     def profile_cb(self, data):
@@ -45,6 +50,7 @@ class tracker:
             for dy in range(-RADIUS, RADIUS):
                 if (dx*dx+dy*dy) <= RADIUS*RADIUS:
                     pixels.append(hsv[centerY+dy, centerX+dx,:])
+
         pixels = np.array(pixels)
         self.lower[0] = min(pixels[:, 0])
         self.upper[0] = max(pixels[:, 0])
@@ -55,15 +61,17 @@ class tracker:
         cv2.destroyAllWindows()
         # register new callbacks for tracking
         self.image_sub.unregister()
-        print "Changing callbacks"
+        print("Changing callbacks")
         self.image_sub = rospy.Subscriber("/camera/rgb/image_color", Image, self.track_cb)
         self.depth_sub = rospy.Subscriber("/camera/depth/image", Image, self.depth_cb)
+
+
     # callback function for tracking the object
     def track_cb(self, data):
         try:
             img = np.array(self.bridge.imgmsg_to_cv2(data))
         except CvBridgeError, e:
-            print e
+            print(e)
     	# subsample
         img = img[::2,::2,:]
         img = cv2.flip(img, 1)
@@ -99,6 +107,8 @@ class tracker:
         cv2.imshow("Mask", mask)
         cv2.moveWindow("Mask", 400, 0)
         cv2.waitKey(10)
+
+
     # callback for working with depth data
     def depth_cb(self, data):
         try:
@@ -106,7 +116,7 @@ class tracker:
             img = img[::2, ::2]
             #img = self.bridge.imgmsg_to_cv2(data)
         except CvBridgeError, e:
-            print e
+            print(e)
             
         # use the tracked object's (X,Y) location to index into the depth array
         # TODO: fix
@@ -116,16 +126,20 @@ class tracker:
         if (type(self.trackedZ) is 'NoneType'):
             return
         
-        print "Ball is at ", (self.trackedX, self.trackedY, float(self.trackedZ))
+        print("Ball is at ", (self.trackedX, self.trackedY, float(self.trackedZ)))
         #cv2.circle(img, (self.trackedX, self.trackedY), 10, (0, 0, 255))
         cv2.imshow("Depth", img)
         cv2.moveWindow("Depth", 0, 400)
         cv2.waitKey(10)
         
+
 if __name__ == "__main__":
     try:
         tr = tracker()
         rospy.spin()
+    except rospy.ROSInterruptException:
+        pass
     except KeyboardInterrupt:
-        print "Shutting down"
-    cv2.destroyAllWindows()
+        print("Shutting down")
+
+cv2.destroyAllWindows()

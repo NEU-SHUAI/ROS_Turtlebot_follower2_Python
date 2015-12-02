@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>turtlebot_follower_gt</name>
+  <version>0.0.1</version>
+  <description>The turtlebot follower @ GT package</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag --> 
+  <maintainer email="jonathan.jones@gatech.edu">Jonathan Jones</maintainer>
+
+  <!-- One license tag required, multiple allowed, one license per tag -->
+  <license>GPLv3</license>
+
+  <!-- Url tags are optional, but mutiple are allowed, one per tag -->
+  <url type="bugtracker">https://github.gatech.edu/rramachandran3/COROS/issues</url>
+  <url type="repository">https://github.gatech.edu/rramachandran3/COROS</url>
+
+  <!-- Author tags are optional, mutiple are allowed, one per tag -->
+  <author email="dwonderley3@gatech.edu">David Wonderley</author>
+  <author email="jwei74@gatech.edu">Jia Wei</author>
+  <author email="hjiang77@gatech.edu">Jiang Hongyi</author>
+  <author email="pyeh9@gatech.edu">Peihsun Yeh</author>
+  <author email="rahul08@gatech.edu">Rahul Ramachandran</author>
+
+  <!-- Use buildtool_depend for build tool packages: -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Use build_depend for packages you need at compile time: -->
+  <build_depend>roslib</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>image_geometry</build_depend>
+
+  <!-- Use exec_depend for packages you need at runtime: -->
+  <exec_depend>roslib</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>cv_bridge</exec_depend>
+  <exec_depend>opencv2</exec_depend>
+  <exec_depend>image_geometry</exec_depend>
+
+</package>
