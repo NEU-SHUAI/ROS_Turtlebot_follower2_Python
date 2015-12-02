@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 2.8.3)
 project(turtlebot_follower_gt)
 
 ## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roslib
   rospy
@@ -11,12 +9,12 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   cv_bridge
   image_geometry
+  message_generation
   OpenCV
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-#find_package(OpenCV REQUIRED)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -46,37 +44,36 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
-## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+# Generate messages in the 'msg' folder
+add_message_files (
+  FILES
+  Depth.msg
+)
 
-## Generate services in the 'srv' folder
-# add_service_files(
+# Generate services in the 'srv' folder
+# add_service_files (
 #   FILES
 #   Service1.srv
 #   Service2.srv
 # )
 
 ## Generate actions in the 'action' folder
-# add_action_files(
+# add_action_files (
 #   FILES
 #   Action1.action
 #   Action2.action
 # )
 
-## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   sensor_msgs#   std_msgs
-# )
+# Generate added messages and services with any dependencies listed here
+generate_messages (
+  DEPENDENCIES
+  sensor_msgs
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
 ################################################
-
 ## To declare and build dynamic reconfigure parameters within this
 ## package, follow these steps:
 ## * In the file package.xml:
@@ -100,6 +97,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package (
   INCLUDE_DIRS	${OpenCV_INCLUDE_DIRS}
   LIBRARIES	${OpenCV_LIBS}
+  CATKIN_DEPENDS roslib rospy sensor_msgs std_msgs message_generation cv_bridge image_geometry
 )
 
 ###########
@@ -107,7 +105,6 @@ catkin_package (
 ###########
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-# include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}

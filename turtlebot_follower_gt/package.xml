@@ -27,17 +27,19 @@
   <!-- Use build_depend for packages you need at compile time: -->
   <build_depend>roslib</build_depend>
   <build_depend>rospy</build_depend>
-  <build_depend>sensor_msgs</build_depend>
   <build_depend>std_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
   <build_depend>image_geometry</build_depend>
 
   <!-- Use exec_depend for packages you need at runtime: -->
   <exec_depend>roslib</exec_depend>
   <exec_depend>rospy</exec_depend>
-  <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>image_geometry</exec_depend>
   <exec_depend>cv_bridge</exec_depend>
   <exec_depend>opencv2</exec_depend>
-  <exec_depend>image_geometry</exec_depend>
 
 </package>
