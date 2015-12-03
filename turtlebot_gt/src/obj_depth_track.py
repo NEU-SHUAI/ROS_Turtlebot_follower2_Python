@@ -148,6 +148,7 @@ class tracker:
 if __name__ == "__main__":
     try:
         tr = tracker()
+        rospy.loginfo("Started {}".format(main.__file__))
         rospy.spin()
     except rospy.ROSInterruptException:
         pass
