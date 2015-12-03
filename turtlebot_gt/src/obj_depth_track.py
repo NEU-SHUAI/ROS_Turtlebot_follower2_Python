@@ -9,10 +9,13 @@ import __main__ as main
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
+
+# FIXME: messages may need to be built with
+# another package all together?
 # our defined message for depth
 # roslib.load_manifest("turtlebot_gt")
 # from turtlebot_gt import turtlebot_gt
-from turtlebot_gt.msg import Depth
+
 
 RADIUS = 20
 
@@ -28,9 +31,10 @@ class tracker:
         # need 2 subscribers - image and depth
         self.image_sub = rospy.Subscriber("/camera/rgb/image_color", Image, self.profile_cb) 
         self.depth_sub = None
+        # FIXME:
         # publisher for depth location
-        self.depth_msg = Depth()
-        self.depth_pub = rospy.Publisher('depth', Depth, queue_size=10)
+        # self.depth_msg = Depth()
+        # self.depth_pub = rospy.Publisher('depth', Depth, queue_size=10)
 
 
     # one callback function to capture data about the tracked object
@@ -129,11 +133,11 @@ class tracker:
             self.trackedZ = img[self.trackedY, self.trackedX]
             if self.trackedZ is None:
                 return
-
-        self.depth_msg.x = self.trackedX
-        self.depth_msg.y = self.trackedY
-        self.depth_msg.y = self.trackedZ
-        pub.publish(self.depth_msg)
+        # FIXME:
+        # self.depth_msg.x = self.trackedX
+        # self.depth_msg.y = self.trackedY
+        # self.depth_msg.y = self.trackedZ
+        # pub.publish(self.depth_msg)
         ros.logdebug("Ball is at ({},{},{})".format(self.trackdX, self.trackedY, self.trackedZ))
         #cv2.circle(img, (self.trackedX, self.trackedY), 10, (0, 0, 255))
         cv2.imshow("Depth", img)
