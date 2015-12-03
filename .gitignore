@@ -1,3 +1,6 @@
 .o
 *.pyc
 *.sublime-workspace
+turtlebot_gt/cfg/cpp*
+turtlebot_gt/docs*
+turtlebot_gt/src/turtlebot_gt*
