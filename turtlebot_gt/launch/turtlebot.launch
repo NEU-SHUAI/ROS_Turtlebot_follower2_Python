@@ -1,8 +1,6 @@
 <launch>
-
-  <group ns="turtlebot1">
+  <group ns="turtlebot">
     <node pkg="turtlebot_gt" name="track_ball" type="obj_depth_track.py" respawn="true" />
-    <node pkg="turtlebot_gt" name="simple_pub" type="simple_pub.py" respawn="true" />
+    <node pkg="turtlebot_gt" name="wanderer" type="wanderer.py" respawn="true" />
   </group>
-
 </launch>
