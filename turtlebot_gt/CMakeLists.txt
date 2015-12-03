@@ -7,8 +7,6 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   sensor_msgs
-  message_generation
-  dynamic_reconfigure
   cv_bridge
   image_geometry
   OpenCV 
@@ -19,7 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 # This macro ensures modules and global scripts declared 
 # therein get installed
-catkin_python_setup()
+# catkin_python_setup()
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -45,10 +43,10 @@ catkin_python_setup()
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 # Generate messages in the 'msg' folder
-add_message_files (
-  FILES
-  Depth.msg
-)
+#add_message_files (
+#  FILES
+#  Depth.msg
+#)
 
 # Generate services in the 'srv' folder
 # add_service_files (
@@ -65,15 +63,15 @@ add_message_files (
 # )
 
 # Generate added messages and services with any dependencies listed here
-generate_messages (
-  DEPENDENCIES
-  std_msgs
-)
+#generate_messages (
+#  DEPENDENCIES
+#  std_msgs
+#)
 
 # Generate dynamic reconfigure parameters in the 'cfg' folder
-generate_dynamic_reconfigure_options(
-  cfg/Depth.cfg
-)
+#generate_dynamic_reconfigure_options(
+#  cfg/Depth.cfg
+#)
 
 ###################################
 ## catkin specific configuration ##
@@ -87,9 +85,6 @@ catkin_package (
     rospy
     std_msgs
     sensor_msgs
-    message_generation
-    message_runtime
-    dynamic_reconfigure
     cv_bridge
     image_geometry 
 )

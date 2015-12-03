@@ -10,13 +10,6 @@ from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 
-# FIXME: messages may need to be built with
-# another package all together?
-# our defined message for depth
-# roslib.load_manifest("turtlebot_gt")
-# from turtlebot_gt import turtlebot_gt
-
-
 RADIUS = 20
 
 class tracker:
@@ -31,9 +24,7 @@ class tracker:
         # need 2 subscribers - image and depth
         self.image_sub = rospy.Subscriber("/camera/rgb/image_color", Image, self.profile_cb) 
         self.depth_sub = None
-        # FIXME:
         # publisher for depth location
-        # self.depth_msg = Depth()
         # self.depth_pub = rospy.Publisher('depth', Depth, queue_size=10)
 
 
