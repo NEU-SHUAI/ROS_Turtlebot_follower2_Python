@@ -1,0 +1,13 @@
+<launch>
+
+  <group ns="turtlebot1">
+    <node pkg="turtlebot_gt" name="depth" type="obj_depth_track.py" respawn="true" />
+    <node pkg="turtlebot_gt" name="simple_sub" type="simple_subscriber.py" respawn="true" />
+  </group>
+
+  <node pkg="turtlebot_gt" name="simple_subs" type="simple_subscriber.py">
+    <remap from="aa" to="bb"/>
+    <remap from="cc" to="dd"/>
+  </node>
+
+</launch>
