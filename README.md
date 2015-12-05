@@ -42,4 +42,4 @@ roslaunch turtlebot_gt turtlebot.launch
 
 ## Adding Nodes
 
-Add a new nodes, and remap current topics by editing [`./src/turtlebot_gt/launch/turtlebot.launch`](./src/turtlebot_gt/launch/turtlebot.launch).
+Add a new nodes, and remap current topics by editing [`turtlebot.launch`](./src/turtlebot_gt/launch/turtlebot.launch).
