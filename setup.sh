@@ -32,6 +32,8 @@ if ! grep -q " $(readlink -m $(pwd)/devel/setup.bash)" ~/.bashrc; then
     case $response in
         [yY][eE][sS]|[yY]) 
             echo ". $(readlink -m $(pwd)/devel/setup.bash)" >> ~/.bashrc
+            # resouce ~/.bashrc so everything is updated
+            . ~/.bashrc
             echo "--  added new ros env to ~/.bashrc"
         ;;
     *)
