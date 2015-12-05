@@ -1,10 +1,10 @@
 *.o
 *.pyc
 *.sublime-workspace
-.catkin_workspace
-CMakeLists.txt
-turtlebot_gt/cfg/cpp*
-turtlebot_gt/docs*
-turtlebot_gt/src/turtlebot_gt*
+*.catkin_workspace
+src/CMakeLists.txt
+src/turtlebot_gt/cfg/cpp*
+src/turtlebot_gt/docs*
+src/turtlebot_gt/src/turtlebot_gt*
 devel/
 build/
