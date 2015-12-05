@@ -2,7 +2,11 @@
 
 Project Repo for Turtlebot Project for ECE6562.
 
-## Setup
+## ROS Setup
+
+These sections give a basic rundown of the steps that should be taken to setup a computer for testing software, or testing code on the TurtleBot itself.
+
+### Catkin Setup
 
 Follow these steps to setup this repo with ROS. You will be able to reference the nodes/topics in this repo once complete.
 
@@ -31,9 +35,21 @@ Follow these steps to setup this repo with ROS. You will be able to reference th
 	. ~/.bashrc
 	```
 
-### Python
+### Python Libraries
 
-Since ROS does not handle 
+To install python packages that aren't supported natively in ROS, use `pip`.
+
+```
+pip install -r requirements.txt
+```
+
+### Repository Lists
+
+To install the required ROS repository references, run the [`install-meta`](./install-meta) script. Be sure to edit the first few lines of the script for installing for correct distro of ROS.
+
+```
+./install-meta
+```
 
 
 ## Running
@@ -56,6 +72,11 @@ If you wish to test something outside the lab using your own camera, specify the
 roslaunch turtlebot_gt turtlebot.launch no_kinect:=true
 ```
 
+To update the tracking profile values, invoke the [`profiler.launch`](./src/turtlebot_gt/launch/profiler.launch) file instead. Once started, a window will appear. Place the ball within the circle, then press `q` to store the new profile.
+
+```
+roslaunch turtlebot_gt profiler.launch
+```
 
 ## Adding Nodes
 
