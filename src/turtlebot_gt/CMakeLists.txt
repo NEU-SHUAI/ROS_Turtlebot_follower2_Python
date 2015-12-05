@@ -81,13 +81,7 @@ find_package(OpenCV)
 catkin_package (
   INCLUDE_DIRS	${OpenCV_INCLUDE_DIRS}
   LIBRARIES	${OpenCV_LIBS}
-  CATKIN_DEPENDS 
-    roslib
-    rospy
-    std_msgs
-    sensor_msgs
-    cv_bridge
-    image_geometry 
+  CATKIN_DEPENDS roslib rospy
 )
 
 ###########
