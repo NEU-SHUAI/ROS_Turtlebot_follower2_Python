@@ -46,8 +46,8 @@ class Profiler:
         cv2.circle(img, (centerX, centerY), self.RADIUS, (0, 0, 255))
         cv2.imshow("Image", img)
         cv2.moveWindow("Image", 0, 0)
-        key = cv2.waitKey(10)
-        if key == 'q':
+        key = cv2.waitKey(10) & 0xff
+        if key == ord('q'):
             self.profile_write(img, [centerX, centerY])
 
     def profile_write(self, img, center):
