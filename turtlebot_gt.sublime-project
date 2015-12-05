@@ -16,6 +16,29 @@
 	],
 	"settings":
 	{
-		"tab_size": 4
+		"tab_size": 4,
+        "flake8lint": {
+            "python_interpreter": "auto",
+            "live_mode_lint_delay": 1500,
+            "builtins": [],
+            "pyflakes": true,
+            "pep8": true,
+            "naming": true,
+            "complexity": -1,
+            "pep8_max_line_length": 79,
+            "select": [],
+            "ignore": ["E123", "E226", "E24"],
+            "ignore_files": []
+        },
+        "sublimeautopep8": {
+            "max-line-length": 79,
+            "format_on_save": false,
+            "show_output_panel": true,
+            // show Format/Preview menu items only for views
+            // with syntax from `syntax_list`
+            // value is base filename of the .tmLanguage syntax files
+            "syntax_list": ["Python"],
+            "file_menu_search_depth": 4  // max depth to search python files
+        }
 	}
 }
