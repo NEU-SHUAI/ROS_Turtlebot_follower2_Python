@@ -39,6 +39,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # python goforward.py
 
 import rospy
+from std_msgs.msg import String
 from geometry_msgs.msg import Twist
 
 
@@ -48,6 +49,8 @@ class GoForward():
         # initiliaze
         rospy.init_node('GoForward', anonymous=False)
 
+        # tell user how to stop TurtleBot
+        rospy.loginfo("To stop TurtleBot CTRL + C")
         # What function to call when you ctrl + c
         rospy.on_shutdown(self.shutdown)
 
@@ -56,24 +59,48 @@ class GoForward():
         # you're not using TurtleBot2
         self.cmd_vel = rospy.Publisher(
             'cmd_vel_mux/input/navi', Twist, queue_size=10)
+        # self.cmd_vel = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+        self.tracking_coord_sub = rospy.Subscriber(
+            'coord', String, self.coord_cb)
+        self.tracking_coord = None
+        # wait for some valid data to come in
+        while self.tracking_coord is None:
+            pass
 
         # TurtleBot will stop if we don't keep telling it to move.  How often
         # should we tell it to move? 10 HZ
         r = rospy.Rate(10)
 
-        # Twist is a datatype for velocity
-        move_cmd = Twist()
-        # let's go forward at 0.2 m/s
-        move_cmd.linear.x = 0.2
-        # let's turn at 0 radians/s
-        move_cmd.angular.z = 0
+        move_cmd = Twist()  # Twist is a datatype for velocity
+        move_cmd.linear.x = 0  # m/s
+        move_cmd.angular.z = 0  # radians/s
 
         # as long as you haven't ctrl + c keeping doing...
         while not rospy.is_shutdown():
-            # publish the velocity
-            self.cmd_vel.publish(move_cmd)
-            # wait for 0.1 seconds (10 HZ) and publish again
-            r.sleep()
+            if self.tracking_coord is not None:
+                # find out if we should turn
+                diff_x = self.tracking_coord[0] - 320
+                if diff_x > 20:
+                    angular_z_vel = 0.4
+                elif diff_x < -20:
+                    angular_z_vel = -0.4
+                else:
+                    angular_z_vel = 0
+
+                # find out if we should move forward or backward
+                diff_z = self.tracking_coord[2] - 0.06
+                if diff_z > 0.01:
+                    x_vel = 0.05
+                elif diff_z < -0.01:
+                    x_vel = -0.05
+                else:
+                    x_vel = 0
+                print("Moving w/ forward vel {}, angular vel {}".format(
+                    x_vel, angular_z_vel))
+                move_cmd.linear.x = x_vel
+                move_cmd.angular.z = angular_z_vel
+                self.cmd_vel.publish(move_cmd)  # publish the velocity
+            r.sleep()  # wait for 0.1 seconds (10 HZ) and publish again
 
     def shutdown(self):
         # stop turtlebot
@@ -85,9 +112,14 @@ class GoForward():
         # shutting down the script
         rospy.sleep(1)
 
+    def coord_cb(self, data):
+        coord = [float(x) for x in str(data).split(',')]
+        self.tracking_coord = coord
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     try:
         GoForward()
-    except:
+    except Exception as e:
+        print(e)
         rospy.loginfo("GoForward node terminated.")
