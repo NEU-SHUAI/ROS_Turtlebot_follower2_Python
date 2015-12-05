@@ -19,7 +19,7 @@ Follow the below steps to get up and running with everything.
 	cd ./COROS
 	```
 
-0. Run the setup script with regular privileges - accepting the script's changes to `~/.bashrc` is highly recommended
+0. Run the [setup script](./setup.sh) with regular privileges - accepting the script's changes to `~/.bashrc` is highly recommended
 
 	```
 	./setup.sh
@@ -42,4 +42,4 @@ roslaunch turtlebot_gt turtlebot.launch
 
 ## Adding Nodes
 
-Add a new nodes, and remap current topics by editing `./src/turtlebot_gt/launch/turtlebot.launch`.
+Add a new nodes, and remap current topics by editing [`./src/turtlebot_gt/launch/turtlebot.launch`](./src/turtlebot_gt/launch/turtlebot.launch).
