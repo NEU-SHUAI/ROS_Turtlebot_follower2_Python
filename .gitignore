@@ -9,3 +9,4 @@ src/CMakeLists.txt
 **/turtlebot_gt/src/turtlebot_gt/
 devel/
 build/
+tennisball.py
