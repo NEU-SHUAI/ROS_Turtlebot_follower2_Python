@@ -45,10 +45,10 @@ pip install -r requirements.txt
 
 ### Repository Lists
 
-To install the required ROS repository references, run the [`install-meta`](./install-meta) script. Be sure to edit the first few lines of the script for installing for correct distro of ROS.
+To install the required ROS repository references, run the [`install-meta.sh`](./install-meta.sh) script. Be sure to edit the first few lines of the script for installing for correct distro of ROS.
 
 ```
-./install-meta
+./install-meta.sh
 ```
 
 
