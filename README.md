@@ -10,13 +10,13 @@ Follow the below steps to get up and running with everything.
 0. Clone this repository
 
 	```
-	git clone https://github.gatech.edu/rramachandran3/COROS
+	git clone https://github.gatech.edu/rramachandran3/COROS .
 	```
 
 0. Go to folder that was created with the above command
 
 	```
-	cd COROS
+	cd ./COROS
 	```
 
 0. Run the setup script with regular privileges - accepting the script's changes to `~/.bashrc` is highly recommended
@@ -39,3 +39,7 @@ To run this package with ROS, issue the below command from anywhere.
 ```
 roslaunch turtlebot_gt turtlebot.launch
 ```
+
+## Adding Nodes
+
+Add a new nodes, and remap current topics by editing `./src/turtlebot_gt/launch/turtlebot.launch`.
