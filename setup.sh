@@ -27,11 +27,11 @@ echo ""
 # try to make the package and ask to
 # add the sourcing env to the user's 
 # bashrc file
-if ! grep -q " $(readlink -m $(pwd)/devel/setup.bash)" ~/.bashrc-test; then
+if ! grep -q " $(readlink -m $(pwd)/devel/setup.bash)" ~/.bashrc; then
     read -r -p "Would you like add the env to ~/.bashrc? [y/N] " response
     case $response in
         [yY][eE][sS]|[yY]) 
-            echo ". $(readlink -m $(pwd)/devel/setup.bash)" >> ~/.bashrc-test
+            echo ". $(readlink -m $(pwd)/devel/setup.bash)" >> ~/.bashrc
             echo "--  added new ros env to ~/.bashrc"
         ;;
     *)
