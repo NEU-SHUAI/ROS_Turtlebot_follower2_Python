@@ -1,6 +1,10 @@
 <launch>
+  <include file="$(find turtlebot_gt)/launch/cam_single.launch" />
+
   <group ns="turtlebot">
-    <node pkg="turtlebot_gt" name="track_ball" type="obj_depth_track.py" respawn="true" />
-    <node pkg="turtlebot_gt" name="wanderer" type="wanderer.py" respawn="true" />
+    <node pkg="turtlebot_gt" name="tracker" type="tracker.py" respawn="true" />
+    <!-- <node pkg="turtlebot_gt" name="wanderer" type="wanderer.py" respawn="true" /> -->
   </group>
+
+  <node pkg="rqt_reconfigure" name="rqt_gui" type="rqt_reconfigure" />
 </launch>
