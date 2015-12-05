@@ -1,7 +1,9 @@
-.o
+*.o
 *.pyc
 *.sublime-workspace
+CMakeLists.txt
 turtlebot_gt/cfg/cpp*
 turtlebot_gt/docs*
 turtlebot_gt/src/turtlebot_gt*
-CMakeLists.txt
+devel/
+build/
