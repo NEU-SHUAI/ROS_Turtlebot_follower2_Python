@@ -1,0 +1,9 @@
+\subsubsection usage Usage
+\verbatim
+<node name="turtlebot_gt" pkg="turtlebot_gt" type="turtlebot_gt">
+  <param name="x" type="double" value="0.0" />
+  <param name="y" type="double" value="0.0" />
+  <param name="z" type="double" value="0.0" />
+</node>
+\endverbatim
+
