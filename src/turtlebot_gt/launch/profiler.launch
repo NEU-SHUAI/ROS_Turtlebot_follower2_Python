@@ -1,0 +1,7 @@
+<launch>
+	<arg name="no_kinect" default="false"/>
+	<include if="$(arg no_kinect)" file="$(find turtlebot_gt)/launch/cam_single.launch"/>
+	<group ns="turtlebot">
+		<node pkg="turtlebot_gt" type="profiler.py" name="profiler" respawn="false" output="screen"/>
+	</group>
+</launch>

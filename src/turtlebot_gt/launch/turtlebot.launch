@@ -1,10 +1,15 @@
 <launch>
-  <include file="$(find turtlebot_gt)/launch/cam_single.launch" />
-
-  <group ns="turtlebot">
-    <node pkg="turtlebot_gt" name="tracker" type="tracker.py" respawn="true" />
-    <!-- <node pkg="turtlebot_gt" name="wanderer" type="wanderer.py" respawn="true" /> -->
-  </group>
-
-  <node pkg="rqt_reconfigure" name="rqt_gui" type="rqt_reconfigure" />
+	<arg name="no_kinect" default="false"/>
+	<arg name="debug" default="false"/>
+	<!-- startup a regular usb camera if the no_kinect argument is true -->
+	<include if="$(arg no_kinect)" file="$(find turtlebot_gt)/launch/cam_single.launch"/>
+	<include unless="$(arg no_kinect)" file="$(find openni_launch)/launch/openni.launch"/>
+	<include unless="$(arg no_kinect)" file="$(find turtlebot_bringup)/launch/minimal.launch"/>
+	<!-- the main namespace for our code -->
+	<group ns="turtlebot">
+		<node pkg="turtlebot_gt" type="tracker.py" name="tracker" respawn="true" output="screen"/>
+		<node pkg="turtlebot_gt" type="simple_follower.py" name="simple_follower" respawn="true" output="screen"/>
+		<node if="$(arg debug)" pkg="rqt_reconfigure" name="rqt_reconfigure" type="rqt_reconfigure"/>
+		<node if="$(arg debug)" pkg="rqt_graph" name="rqt_graph" type="rqt_graph"/>
+	</group>
 </launch>
