@@ -3,8 +3,19 @@
 	[
 		{
 			"path": ".",
-			"file_exclude_patterns": [".*", "*.sublime-*", "*.pdf", "*.pyc", "*.o"],
-			"folder_exclude_patterns": [".*", "doc", "docs"]
+			"name": "repo",
+			"file_exclude_patterns": [".*", "*.sublime-*", "*.pdf", "*.*~", "setup.sh"],
+			"folder_exclude_patterns": ["*"]
+		},
+		{
+			"path": "./src/turtlebot_gt",
+			"name": "turtlebot_gt",
+			"file_exclude_patterns": [".*", ".*~", "*.pyc", "*.*~"],
+			"folder_exclude_patterns": [".*", "docs", "turtlebot_gt"]
 		}
-	]
+	],
+	"settings":
+	{
+		"tab_size": 4
+	}
 }
