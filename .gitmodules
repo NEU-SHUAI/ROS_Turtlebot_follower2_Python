@@ -1,6 +1,0 @@
-[submodule "turtlebot"]
-	path = turtlebot
-	url = https://github.com/TurtlebotAdventures/turtlebot
-[submodule "ihe_turtlebot_wander"]
-	path = ihe_turtlebot_wander
-	url = https://github.com/TurtlebotAdventures/ihe_turtlebot_wander.git
