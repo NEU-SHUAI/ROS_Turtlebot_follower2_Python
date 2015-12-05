@@ -48,15 +48,16 @@ class Profiler:
         cv2.moveWindow("Image", 0, 0)
         key = cv2.waitKey(10)
         if key == 'q':
-            self.profile_write(img)
+            self.profile_write(img, [centerX, centerY])
 
-    def profile_write(self, img):
+    def profile_write(self, img, center):
         pixels = []
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-        for dx in range(-self.RADIUS, self.RADIUS):
-            for dy in range(-self.RADIUS, self.RADIUS):
-                if (dx*dx + dy*dy <= self.RADIUS*self.RADIUS):
-                    pixels.append(hsv[centerY+dy, centerX+dx, :])
+        rr = self.RADIUS
+        for dx in range(-rr, rr):
+            for dy in range(-rr, rr):
+                if (dx*dx + dy*dy <= rr*rr):
+                    pixels.append(hsv[center[1]+dy, center[0]+dx, :])
         pixels = np.array(pixels)
         self.lower = np.array(
             [min(pixels[:, 0]), min(pixels[:, 1]), min(pixels[:, 2])])

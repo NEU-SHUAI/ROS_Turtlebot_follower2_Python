@@ -93,13 +93,6 @@ class Tracker:
         bx = int(m['m10']/m['m00'])
         by = int(m['m01']/m['m00'])
         self.tracked[:2] = bx, by
-        # draw a circle and line from the object to the "center of the screen",
-        # or some other reference point
-        cv2.circle(img, (bx, by), 10, (0, 0, 255))
-        cx, cy = [i/2 for i in img.shape[:2]]
-        cv2.line(img, (cx, cy), (bx, by), (255, 0, 0))
-        cv2.imshow("Camera", img)
-        cv2.waitKey(10)
 
     def depth_cb(self, data):
         '''
