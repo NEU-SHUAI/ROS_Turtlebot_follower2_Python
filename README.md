@@ -1,4 +1,4 @@
-# COROS
+# turtlebot-follower
 
 Project Repo for Turtlebot Project for ECE6562.
 
@@ -14,13 +14,13 @@ Follow these steps to setup this repo with ROS. You will be able to reference th
 0. Clone this repository
 
 	```
-	git clone https://github.gatech.edu/rramachandran3/COROS .
+	git clone https://github.com/jjones646/turtlebot-follower
 	```
 
 0. Go to folder that was created with the above command
 
 	```
-	cd ./COROS
+	cd ./turtlebot-follower
 	```
 
 0. Run the [setup script](./setup.sh) with regular privileges - accepting the script's changes to `~/.bashrc` is highly recommended
